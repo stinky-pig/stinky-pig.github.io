@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>EFCore生成数据库</title>
+    <url>/2020/05/29/EFCore%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>在VS中打开程序包管理器控制台</p>
+<hr>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>执行命令,添加数据</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Add-Migration</span><br></pre></td></tr></table></figure></div>
+<p>刷新数据库</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Update-Database</span><br></pre></td></tr></table></figure></div>
+<hr>
+]]></content>
+      <categories>
+        <category>EF</category>
+      </categories>
+      <tags>
+        <tag>EF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>修改Linux下SqlServer默认排序</title>
+    <url>/2020/05/29/%E4%BF%AE%E6%94%B9Linux%E4%B8%8BSqlServer%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="修改排序规则"><a href="#修改排序规则" class="headerlink" title="修改排序规则"></a>修改排序规则</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--创建数据库</span><br><span class="line">create database [数据库]</span><br><span class="line">go</span><br><span class="line">---修改数据库 排序规则</span><br><span class="line">alter database [数据库] collate Chinese_PRC_CI_AI_WS;</span><br><span class="line">go</span><br></pre></td></tr></table></figure></div>]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>SqlServer</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>SqlServer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Guid</title>
+    <url>/2020/04/19/Guid/</url>
+    <content><![CDATA[<hr>
+<h2 id="什么是Guid"><a href="#什么是Guid" class="headerlink" title="什么是Guid"></a>什么是Guid</h2><p>GUID（全球唯一标识）是微软使用的一个术语，由一个特定的算法，给某一个实体，如Word文档，<br>创建一个唯一的标识，GUID值就是这个唯一的标识码。GUID广泛应用于微软的产品中，用于识别<br>接口、复制品、记录以及其他对象。不同类型的对象对应不同的GUID值。例如，一个微软Access<br>数据库使用的是16字节域为复制品创建一个唯一标识。</p>
+<hr>
+<h2 id="使用Guid"><a href="#使用Guid" class="headerlink" title="使用Guid"></a>使用Guid</h2><p>C#生成Guid值。C#有Guid结构，并且有静态的方法NewGuid()可以创建Guid实例。具体如下：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Guid.NewGuid();</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="Guid的好处"><a href="#Guid的好处" class="headerlink" title="Guid的好处"></a>Guid的好处</h2><p>Guid可以作为数据库的主键，这样可以解决很多人操作数据库而导致数据添加不了报错，<br>应为主键是唯一的，使用EF框架的时间，主键自增的时间是不需要填写主键，当两个人<br>或多个人同时向同一张表添加数据的时候，EF会在程序这边先生成主键，这个同时添加数据的时候，很容易导致<br>两条数据的主键ID相同，是后到数据库的数据添加不上报错，数据库存Guid的类型是Uniqueidentifier。</p>
+]]></content>
+      <categories>
+        <category>Guid</category>
+      </categories>
+      <tags>
+        <tag>Guid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git的基本使用</title>
+    <url>/2020/03/24/git%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
+<hr>
+<h2 id="Git-与-SVN-区别"><a href="#Git-与-SVN-区别" class="headerlink" title="Git 与 SVN 区别"></a>Git 与 SVN 区别</h2><ul>
+<li>Git 是分布式的，SVN 不是</li>
+<li>Git 把内容按元数据方式存储，而 SVN 是按文件</li>
+<li>Git 分支和 SVN 的分支不同</li>
+<li>Git 没有一个全局的版本号，而 SVN 有</li>
+<li>Git 的内容完整性要优于 SVN</li>
+</ul>
+<hr>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>使用 git clone 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url]</span><br></pre></td></tr></table></figure></div>
+<p>拷贝到指定位置</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url] [directory]</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>使用 git add 命令将想要快照的内容写入缓存区， 而执行 git commit 将缓存区内容添加到仓库中。</p>
+<p>Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步需要配置用户名和邮箱地址。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">'runoob'</span></span><br><span class="line">$ git config --global user.email <span class="built_in">test</span>@runoob.com</span><br></pre></td></tr></table></figure></div>
+<p>如果你觉得 git add 提交缓存的流程太过繁琐，Git 也允许你用 -a 选项跳过这一步。命令格式如下：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h2><p>如果只是简单地从工作目录中手工删除文件，运行 git status 时就会在 Changes not staged for commit 的提示。</p>
+<p>要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除，然后提交。可以用以下命令完成此项工作</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm &lt;file&gt;</span><br></pre></td></tr></table></figure></div>
+<p>如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 -f</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm -f &lt;file&gt;</span><br></pre></td></tr></table></figure></div>
+<p>如果把文件从暂存区域移除，但仍然希望保留在当前工作目录中，换句话说，仅是从跟踪清单中删除，使用 –cached 选项即可</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm --cached &lt;file&gt;</span><br></pre></td></tr></table></figure></div>
+<p>可以递归删除，即如果后面跟的是一个目录做为参数，则会递归删除整个目录中的所有子目录和文件：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm –r *</span><br></pre></td></tr></table></figure></div>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dotnet常用命令</title>
+    <url>/2020/03/23/dotnet%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="初始化C-或者F-控制台应用程序项目，在当前目录创建新的项目"><a href="#初始化C-或者F-控制台应用程序项目，在当前目录创建新的项目" class="headerlink" title="初始化C#或者F#控制台应用程序项目，在当前目录创建新的项目"></a>初始化C#或者F#控制台应用程序项目，在当前目录创建新的项目</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet new</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="还原置顶应用程序的依赖项"><a href="#还原置顶应用程序的依赖项" class="headerlink" title="还原置顶应用程序的依赖项"></a>还原置顶应用程序的依赖项</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet restore</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="生成-net-core-程序"><a href="#生成-net-core-程序" class="headerlink" title="生成.net core 程序"></a>生成.net core 程序</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet build</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="发布-net-应用程序"><a href="#发布-net-应用程序" class="headerlink" title="发布.net 应用程序"></a>发布.net 应用程序</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet public</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="从源码运行应用程序"><a href="#从源码运行应用程序" class="headerlink" title="从源码运行应用程序"></a>从源码运行应用程序</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="使用project-json-中置顶的测试执行工具执行测试"><a href="#使用project-json-中置顶的测试执行工具执行测试" class="headerlink" title="使用project.json 中置顶的测试执行工具执行测试"></a>使用project.json 中置顶的测试执行工具执行测试</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet <span class="built_in">test</span></span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="使用代码创建NuGet包"><a href="#使用代码创建NuGet包" class="headerlink" title="使用代码创建NuGet包"></a>使用代码创建NuGet包</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet pack</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="发布项目（制定系统版本和指定位置）"><a href="#发布项目（制定系统版本和指定位置）" class="headerlink" title="发布项目（制定系统版本和指定位置）"></a>发布项目（制定系统版本和指定位置）</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet publish -r ubuntu.16.04-64 -c Linux -o E:\Demo</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="运行xxx-dll程序"><a href="#运行xxx-dll程序" class="headerlink" title="运行xxx.dll程序"></a>运行xxx.dll程序</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet xxx.dll</span><br></pre></td></tr></table></figure></div>]]></content>
+      <categories>
+        <category>dotnet</category>
+      </categories>
+      <tags>
+        <tag>dotnet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx基本命令</title>
+    <url>/2020/03/23/nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<div class="article-container" id="post-content"><div class="note warning">
+
+<p>以下命令需进入nginx安装目录中使用，即在 <code>/usr/local/nginx/sbin/</code> 中使用。</p>
+</div></div>
+
+<h2 id="查看nginx版本"><a href="#查看nginx版本" class="headerlink" title="查看nginx版本"></a>查看nginx版本</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -v  查看nginx版本</span><br></pre></td></tr></table></figure></div>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -V  除版本信息外还显示配置参数信息</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start nginx</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="关闭nginx"><a href="#关闭nginx" class="headerlink" title="关闭nginx"></a>关闭nginx</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s stop  强制停止nginx服务</span><br></pre></td></tr></table></figure></div>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s quit  处理完请求后再停止服务</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="检测配置文件是否有语法错误"><a href="#检测配置文件是否有语法错误" class="headerlink" title="检测配置文件是否有语法错误"></a>检测配置文件是否有语法错误</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="重载nginx配置文件"><a href="#重载nginx配置文件" class="headerlink" title="重载nginx配置文件"></a>重载nginx配置文件</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="打开日志文件"><a href="#打开日志文件" class="headerlink" title="打开日志文件"></a>打开日志文件</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reopen</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="查看帮助信息"><a href="#查看帮助信息" class="headerlink" title="查看帮助信息"></a>查看帮助信息</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -h</span><br></pre></td></tr></table></figure></div>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>systemd部署开机启动</title>
+    <url>/2020/03/23/systemd%E9%83%A8%E7%BD%B2%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>创建一个service文件，进入/etc/systemd/system/</p>
+<hr>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>创建text.service文件，内容如下：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+</pre></td><td class="code"><pre><span class="line">[Unit]</span>
+<span class="line"><span class="comment">#/etc/systemd/system/honeypot.service</span></span>
+<span class="line">Description=HoneyPot dotnet service</span>
+<span class="line"> </span>
+<span class="line">[Service]</span>
+<span class="line">WorkingDirectory=/root/Honeypot_18.04</span>
+<span class="line">ExecStart=/usr/bin/dotnet /root/Honeypot_18.04/HoneypotMain.dll</span>
+<span class="line">Restart=always</span>
+<span class="line"><span class="comment"># Restart service after 10 seconds if the dotnet service crashes:</span></span>
+<span class="line">RestartSec=10</span>
+<span class="line">KillSignal=SIGINT</span>
+<span class="line">SyslogIdentifier=honeypot</span>
+<span class="line">User=root</span>
+<span class="line">Environment=ASPNETCORE_ENVIRONMENT=Production</span>
+<span class="line">Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=<span class="literal">false</span></span>
+<span class="line"> </span>
+<span class="line">[Install]</span>
+<span class="line">WantedBy=multi-user.target</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<h2 id="主要命令"><a href="#主要命令" class="headerlink" title="主要命令"></a>主要命令</h2><p>文件改动后要重新转载一下</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload service</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>设置开机启动</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p> 查看该服务的状态</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">systemctl status text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>停止服务</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo systemctl stop text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+杀死服务
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">kill</span> text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+重启服务
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo systemctl restart text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+开启服务
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo systemctl start text.service</span>
+</pre></td></tr></tbody></table></figure></div>
+
+
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Systemd</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Systemd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装nginx服务</title>
+    <url>/2020/03/23/Linux%E5%AE%89%E8%A3%85nginx%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<div class="article-container" id="post-content">
+
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>输入</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo  apt-get  update</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>更新软件</p>
+<hr>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>开始安装，输入sudo  apt-get  install  nginx</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">sudo  apt-get  install  nginx</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<hr>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>进入conf.d文件下，创建新的conf文件，名称为text</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /etc/nginx/conf.d</span>
+<span class="line">sudo  vi  test.conf</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<hr>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>在text.conf文件下写入配置文件，具体参数的含义如下</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+<span class="line">29</span>
+<span class="line">30</span>
+<span class="line">31</span>
+<span class="line">32</span>
+<span class="line">33</span>
+<span class="line">34</span>
+<span class="line">35</span>
+<span class="line">36</span>
+<span class="line">37</span>
+<span class="line">38</span>
+<span class="line">39</span>
+<span class="line">40</span>
+<span class="line">41</span>
+<span class="line">42</span>
+<span class="line">43</span>
+<span class="line">44</span>
+<span class="line">45</span>
+<span class="line">46</span>
+<span class="line">47</span>
+<span class="line">48</span>
+<span class="line">49</span>
+<span class="line">50</span>
+<span class="line">51</span>
+<span class="line">52</span>
+<span class="line">53</span>
+<span class="line">54</span>
+<span class="line">55</span>
+</pre></td><td class="code"><pre><span class="line">server {</span>
+<span class="line">    <span class="comment"># 需要被监听的端口号，前提是此端口号没有被占用，否则在重启 Nginx 时会报错</span></span>
+<span class="line">    listen       8888;</span>
+<span class="line">    <span class="comment"># 服务名称，无所谓</span></span>
+<span class="line">    server_name  localhost;</span>
+<span class="line"></span>
+<span class="line">    <span class="comment"># 上述端口指向的根目录</span></span>
+<span class="line">    root /opt/asing1elife/teamnote;</span>
+<span class="line">    <span class="comment"># 项目根目录中指向项目首页</span></span>
+<span class="line">    index index.html;</span>
+<span class="line"></span>
+<span class="line">    client_max_body_size 20m; </span>
+<span class="line">    client_body_buffer_size 128k;</span>
+<span class="line"></span>
+<span class="line">    <span class="comment"># 根请求会指向的页面</span></span>
+<span class="line">    location / {</span>
+<span class="line">      <span class="comment"># 此处的 @router 实际上是引用下面的转发，否则在 Vue 路由刷新时可能会抛出 404</span></span>
+<span class="line">      try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ @router;</span>
+<span class="line">      <span class="comment"># 请求指向的首页</span></span>
+<span class="line">      index index.html;</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <span class="comment"># 由于路由的资源不一定是真实的路径，无法找到具体文件</span></span>
+<span class="line">    <span class="comment"># 所以需要将请求重写到 index.html 中，然后交给真正的 Vue 路由处理请求资源</span></span>
+<span class="line">    location @router {</span>
+<span class="line">      rewrite ^.*$ /index.html last;</span>
+<span class="line">    }</span>
+<span class="line"></span>
+<span class="line">    <span class="comment"># 关键步骤，这里表示将所有的 http://192.168.7.8:8888/teamnote/api/ 开头的请求都转发到下面 proxy_pass 指定的链接中</span></span>
+<span class="line">    <span class="comment"># 这里使用 /teamnote/api/ 而不是 /teamnote/ ，是因为前端项目本身的访问链接就是 http:192.168.7.8:8888/teamnote/</span></span>
+<span class="line">    <span class="comment"># 为了防止在访问页面时请求就被 Nginx 代理转发，这里需要更具体的配置，才能和前端访问请求区分开</span></span>
+<span class="line">    location /teamnote/api/ {</span>
+<span class="line">          <span class="comment"># 后端的真实接口</span></span>
+<span class="line">          proxy_pass http://192.168.7.8:2592/teamnote/api/;</span>
+<span class="line">          proxy_redirect off;</span>
+<span class="line">          proxy_set_header Host <span class="variable">$host</span>;</span>
+<span class="line">          proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span>
+<span class="line">          proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span>
+<span class="line">          proxy_set_header   Cookie <span class="variable">$http_cookie</span>;</span>
+<span class="line">          <span class="comment"># for Ajax</span></span>
+<span class="line">          <span class="comment">#fastcgi_param HTTP_X_REQUESTED_WITH $http_x_requested_with;</span></span>
+<span class="line">          proxy_set_header HTTP-X-REQUESTED-WITH <span class="variable">$http_x_requested_with</span>;</span>
+<span class="line">          proxy_set_header HTTP_X_REQUESTED_WITH <span class="variable">$http_x_requested_with</span>;</span>
+<span class="line">          proxy_set_header x-requested-with <span class="variable">$http_x_requested_with</span>;</span>
+<span class="line">          client_max_body_size 10m;</span>
+<span class="line">          client_body_buffer_size 128k;</span>
+<span class="line">          proxy_connect_timeout 90;</span>
+<span class="line">          proxy_send_timeout 90;</span>
+<span class="line">          proxy_read_timeout 90;</span>
+<span class="line">          proxy_buffer_size 128k;</span>
+<span class="line">          proxy_buffers 32 32k;</span>
+<span class="line">          proxy_busy_buffers_size 128k;</span>
+<span class="line">          proxy_temp_file_write_size 128k;</span>
+<span class="line">    }</span>
+<span class="line">}</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<hr>
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>重新加载 Nginx 的配置文件</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">nginx -s reload</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>停止Nginx服务</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">nginx -s stop</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>设置Nginx开机自启动,同样是用systemd设置软件自启动</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">systemctl  <span class="built_in">enable</span>  nginx.service</span>
+</pre></td></tr></tbody></table></figure></div>
+</div>]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo添加搜索功能</title>
+    <url>/2020/03/10/hexo%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<div class="article-container" id="post-content">
+
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在控制台中，进入自己的博客的文件夹下面（我的是blog）,运行命令安装插件</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span>
+</pre></td></tr></tbody></table></figure></div>
+* * *
+## 修改站点配置文件
+我的路径是：blog/config.yml文件，经行编辑,添加下面的配置信息
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+</pre></td><td class="code"><pre><span class="line">search:</span>
+<span class="line">    path: search.xml</span>
+<span class="line">    field: post</span>
+<span class="line">    format: html</span>
+<span class="line">    <span class="built_in">limit</span>: 10000</span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>PS：每个冒号后面都有一个空格</p>
+<hr>
+<h2 id="修改主题的配置文件"><a href="#修改主题的配置文件" class="headerlink" title="修改主题的配置文件"></a>修改主题的配置文件</h2><p>我的路径是：/blog/themes/Butterfly下的_config.yml文件，进行编辑。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+</pre></td><td class="code"><pre><span class="line">local_search:</span>
+<span class="line">    <span class="built_in">enable</span>: <span class="literal">true</span></span>
+</pre></td></tr></tbody></table></figure></div>
+
+<p>PS：每个冒号后面都有一个空格</p>
+</div>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建个人博客</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><p>这一篇文章是面向有服务器的同学，所以环境是搭建在远程服务器上的。没有服务器的同学可以看我的下一篇文章，搭建在Github Page上。</p>
+<p>其实现在服务器已经白菜价，阿里云、腾讯云、亚马逊AWS等等等，几十块钱就能租用一个月有需要的同学可以考虑买来玩一玩 。</p>
+<p>这里我推荐一家美国的主机商<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fm.do.co%2Fc%2F911fa5210d1b" target="_blank" rel="noopener">DigiticalOcean</a>,点击前面我的推广链接注册新账号，会送100美元的额度，期限是两个月，也就是可以白用两个月。</p>
+<p>这家最便宜的机型一个月只要5美元，1000mbps带宽，1T流量每月，还支持ipv6，同学们可以尝试一下。如果你点我的推广链接注册并且用掉25美元额度，我也可以获得25美元奖励。</p>
+<p>只需要paypal付款5美元（paypal支持银联储蓄卡美元结算）。</p>
+<p>好了广告打完了。</p>
+<p>如果你是其他云服务器也没关系，只要安装两个工具：</p>
+<p>1.node.js</p>
+<p>2.git</p>
+<p>我默认大家的服务器系统都是linux的了。windows安装业都是非常容易解决的问题，如果你已经安装了nodejs和git就可以看下一节了。</p>
+<hr>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>有一个github账号，没有的话去注册一个</li>
+<li>安装了node.js、npm，并了解相关基础知识</li>
+<li>安装了git for windows（或者其它git客户端）</li>
+</ul>
+<hr>
+<p>搭建github博客</p>
+<ol>
+<li>新建一个名为你的用户名.github.io的仓库</li>
+<li>域名默认是<a href="https://xxx.github.io" target="_blank" rel="noopener">https://xxx.github.io</a></li>
+</ol>
+<hr>
+<h2 id="安装hexo博客"><a href="#安装hexo博客" class="headerlink" title="安装hexo博客"></a>安装hexo博客</h2><p>1.前提安装了npm，在终端上输入</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure></div>
+
+<p>2.安装hexo，在终端上输入</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure></div>
+
+<p>3.初始化hexok，运行命令</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></div>
+
+<p>4.注意<br>hexo d命令报The “mode” argument must be integer. Received an instance of Object<br>产生这个的原因是node的版本太高了<br>解决的办法很简单，卸载最新版的node14.0，重新安装稳定版的node12.14，这个问题就解决了</p>
+<hr>
+<h2 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h2><ul>
+<li>清理静态文件</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>生成静态文件</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>运行本地服务</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>上传到github</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/03/09/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
