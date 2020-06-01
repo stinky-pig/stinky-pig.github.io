@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS7配置supervisor</title>
+    <url>/2020/06/01/CentOS7%E9%85%8D%E7%BD%AEsupervisor/</url>
+    <content><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>1.创建配置文件夹</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /etc/supervisor</span><br></pre></td></tr></table></figure></div>
+<p>2.创建配置文件</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf</span><br></pre></td></tr></table></figure></div>
+<p>3.修改配置文件</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/supervisor/supervisord.conf</span><br></pre></td></tr></table></figure></div>
+<p>4.将[include]节点改为</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[include]</span><br><span class="line">files=/etc/supervisor/conf.d/*.conf</span><br></pre></td></tr></table></figure></div>
+<h3 id="特别注意：首尾需无空格，无分号，需顶格"><a href="#特别注意：首尾需无空格，无分号，需顶格" class="headerlink" title="*特别注意：首尾需无空格，无分号，需顶格"></a>*特别注意：首尾需无空格，无分号，需顶格</h3><p>5.修改所有的/tmp路径</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/tmp/supervisor.sock 改成 /var/run/supervisor.sock</span><br><span class="line"> </span><br><span class="line">/tmp/supervisord.log 改成 /var/<span class="built_in">log</span>/supervisor.log</span><br><span class="line"> </span><br><span class="line">/tmp/supervisord.pid 改成 /var/run/supervisor.pid</span><br></pre></td></tr></table></figure></div>
+<h3 id="由于tmp路径的文件夹会不定时被linux清理掉，导致supervisor无法正常运行且报错：unix-tmp-supervisor-sock-no-such-file"><a href="#由于tmp路径的文件夹会不定时被linux清理掉，导致supervisor无法正常运行且报错：unix-tmp-supervisor-sock-no-such-file" class="headerlink" title="由于tmp路径的文件夹会不定时被linux清理掉，导致supervisor无法正常运行且报错：unix:///tmp/supervisor.sock no such file"></a>由于tmp路径的文件夹会不定时被linux清理掉，导致supervisor无法正常运行且报错：unix:///tmp/supervisor.sock no such file</h3><p>6.在目录“/etc/supervisor”下创建dotnet core 进程配置文件存放目录“conf.d”</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /etc/supervisor/conf.d</span><br></pre></td></tr></table></figure></div>
+<p>7.创建进程配置文件</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/supervisor/conf.d/MyDotNetName.conf</span><br></pre></td></tr></table></figure></div>
+<p>8.配置内容</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[program:MyDotNetName] ;显示名称</span><br><span class="line"><span class="built_in">command</span>=dotnet MyDotNetName.dll  ;运行命令,启动dotnet进程</span><br><span class="line">directory=/usr/PublishOutput/   ;MyDotNetName目录</span><br><span class="line">stderr_logfile=/var/<span class="built_in">log</span>/MyDotNetName.error.log  ;错误日志文件</span><br><span class="line">stdout_logfile=/var/<span class="built_in">log</span>/MyDotNetName.stdout.log  ;日志文件</span><br><span class="line">environment=ASPNETCORE_ENVIRONMENT=Production  ;进程环境变量</span><br><span class="line">user=root   ;进程执行用户</span><br><span class="line">autostart=<span class="literal">true</span>  ;自动启动</span><br><span class="line">autorestart=<span class="literal">true</span>   ;是否自动重启</span><br><span class="line">startsecs=1     ;自动重启间隔时间</span><br></pre></td></tr></table></figure></div>
+<p>9.启动supervisor，并检查进程</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">supervisord -c /etc/supervisor/supervisord.conf</span><br><span class="line">ps -ef | grep supervisor</span><br><span class="line">ps -ef | grep dotnet</span><br></pre></td></tr></table></figure></div>
+<h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><ol>
+<li>创建supervisor 自启动服务<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;supervisor.service</span><br></pre></td></tr></table></figure></div>
+编辑内容：<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=supervisor</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/bin/supervisord -c /etc/supervisor/supervisord.conf</span><br><span class="line">ExecStop=/usr/bin/supervisorctl shutdown</span><br><span class="line">ExecReload=/usr/bin/supervisorctl reload</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=10s</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></div></li>
+<li>使配置生效<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure></div></li>
+<li>设置服务开机启动，即设置enable<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> supervisor.service</span><br></pre></td></tr></table></figure></div></li>
+<li>启动服务<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start supervisor.service</span><br></pre></td></tr></table></figure></div>
+<h2 id="远程管理"><a href="#远程管理" class="headerlink" title="远程管理"></a>远程管理</h2></li>
+<li>修改配置文件<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/supervisor/supervisord.conf</span><br></pre></td></tr></table></figure></div></li>
+<li>将[inet_http_server]节点改为<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">[inet_http_server]</span><br><span class="line">port=*:9001                  ;ip 加端口</span><br><span class="line">username=user               ;登陆账号，可以不设，建议设置</span><br><span class="line">password=123456              ;登陆账户，可以不设，建议设置</span><br></pre></td></tr></table></figure></div>
+<h3 id="特别注意：每行开头默认有分毫，需删除分号"><a href="#特别注意：每行开头默认有分毫，需删除分号" class="headerlink" title="*特别注意：每行开头默认有分毫，需删除分号"></a>*特别注意：每行开头默认有分毫，需删除分号</h3></li>
+<li>设置防火墙开放9001端口<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=9001/tcp --permanent</span><br></pre></td></tr></table></figure></div>
+<h3 id="参数–permanent表示永久生效"><a href="#参数–permanent表示永久生效" class="headerlink" title="参数–permanent表示永久生效"></a>参数–permanent表示永久生效</h3></li>
+<li>重启服务<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reload</span><br></pre></td></tr></table></figure></div>
+
+</li>
+</ol>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service supervisor stop 停止supervisor服务</span><br><span class="line"> </span><br><span class="line">sudo service supervisor start 启动supervisor服务</span><br><span class="line"> </span><br><span class="line">supervisorctl shutdown <span class="comment">#关闭所有任务</span></span><br><span class="line"> </span><br><span class="line">supervisorctl stop|start program_name <span class="comment">#启动或停止服务</span></span><br><span class="line"> </span><br><span class="line">supervisorctl status <span class="comment">#查看所有任务状态</span></span><br><span class="line"> </span><br><span class="line">supervisorctl reload <span class="comment">#修改配置文件后，重新加载生效</span></span><br></pre></td></tr></table></figure></div>
+
+<p>版权声明：本文为CSDN博主「钟耿龙Galen」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/sssosssjdgjiff/java/article/details/88637490" target="_blank" rel="noopener">https://blog.csdn.net/sssosssjdgjiff/java/article/details/88637490</a></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>supervisor</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS7安装supervisor</title>
+    <url>/2020/06/01/CentOS7%E5%AE%89%E8%A3%85supervisor/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>方式一：yum安装</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install supervisor</span><br></pre></td></tr></table></figure></div>
+<p>如果yum安装无法找到资源，可以通过easy_install</p>
+<p>方式二：easy_install 安装</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">easy_install supervisor</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>supervisor</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Chart生成图表</title>
     <url>/2020/06/01/Chart%E7%94%9F%E6%88%90%E5%9B%BE%E8%A1%A8/</url>
     <content><![CDATA[<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>引入js脚本</p>
