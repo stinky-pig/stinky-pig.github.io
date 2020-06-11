@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Nginx防止DDOS、CC、爬虫攻击</title>
+    <url>/2020/06/11/Nginx%E9%98%B2%E6%AD%A2DDOS%E3%80%81CC%E3%80%81%E7%88%AC%E8%99%AB%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h2 id="防止DDOS、CC攻击"><a href="#防止DDOS、CC攻击" class="headerlink" title="防止DDOS、CC攻击"></a>防止DDOS、CC攻击</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http &#123; </span><br><span class="line">  limit_conn_zone <span class="variable">$binary_remote_addr</span> zone=perip：10m; </span><br><span class="line">  limit_conn_zone <span class="variable">$server_name</span> zone=perserver：10m </span><br><span class="line">  server &#123; </span><br><span class="line">    limit_conn perip 10; 　　　　 <span class="comment">#单个客户端ip与服务器的连接数．</span></span><br><span class="line">    limit_conn perserver 100;　　＃限制与服务器的总连接数</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="禁止爬虫"><a href="#禁止爬虫" class="headerlink" title="禁止爬虫"></a>禁止爬虫</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123; </span><br><span class="line"></span><br><span class="line">listen 80; </span><br><span class="line">server_name 127.0.0.1; </span><br><span class="line"></span><br><span class="line">添加如下内容即可防止爬虫</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$http_user_agent</span>~*<span class="string">"qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot"</span>) &#123; </span><br><span class="line"><span class="built_in">return</span> 403; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS7配置supervisor</title>
     <url>/2020/06/01/CentOS7%E9%85%8D%E7%BD%AEsupervisor/</url>
     <content><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>1.创建配置文件夹</p>
