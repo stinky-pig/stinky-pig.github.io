@@ -1,0 +1,13 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(function(){
+    $.ajax({
+        url: 'http://admin.xingtaoyufu.com/Products/Api/GetCountry',
+        method: 'GET',
+        success: function(response) {
+            console.log(response);
+            // 在这里处理返回的数据
+        }
+    });
+})
+</script>
