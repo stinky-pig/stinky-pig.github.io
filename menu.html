@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择菜单下单</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="menu.js"></script>
+    <style>
+        .menu-item{
+            width: 18%;
+            background-color: #409EFF;
+            margin: 5px 1%;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn_order{
+            background-color: #67C23A;
+            padding: 6px 12px;
+            width: 80px;
+            color: #fff;
+            margin: 20px 0px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 110px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>今天的菜单</h1>
+    <div id="order_list"></div>
+    <div class="btn_order" onclick="Order()">下单</div>
+    <div class="input-container">
+        <input type="text" id="menu_input" placeholder="手动输入菜系">
+        <button onclick="addMenu()">添加</button><button onclick="delMenu()">全部移除</button>
+    </div>
+    <div id="menu" style="display: flex;flex-wrap: wrap;">
+    </div>
+        <script>
+            var order_list = [];
+            $(function(){
+                console.log(Code.MenuData);
+                for(let i = 0; i < Code.MenuData.length; i++){
+                    $("#menu").append("<div class='menu-item'>"+Code.MenuData[i]+"</div>")
+                }
+                $(".menu-item").click(function(){
+                    if(!IsOrder($(this).text())){
+                        order_list.push($(this).text());
+                        $("#order_list").append("<li>"+$(this).text()+"</li>");
+                    }
+                })
+            });
+            function Order(){
+                if(order_list.length==0){
+                    alert("请选择菜单");
+                    return;
+                }
+                var str_order="今天菜单吃<br><br>"+$('#order_list').html();
+                Code.PushPlus.Send(str_order,function(data){
+                    console.log(data);
+                    if(data.code==200){
+                        alert("下单成功");
+                    }
+                })
+            }
+            function addMenu(){
+                var menu=$("#menu_input").val();
+                if(menu==""){
+                    alert("请输入菜系");
+                    return;
+                }
+                    if(IsOrder(menu)){
+                        alert("菜单已经存在");
+                        return;
+                    }
+                order_list.push(menu);
+                $("#menu_input").val('');
+                $("#order_list").append("<li>"+menu+"</li>");
+            }
+            function delMenu(){
+                order_list=[];
+                $("#order_list").html("");
+            }
+            function IsOrder(menu){
+                var isOrder=false;
+                    for(let i = 0; i < order_list.length; i++){
+                        if(order_list[i]==menu){
+                            isOrder=true;
+                        }
+                    }
+                    return isOrder;
+            }
+        </script>
+</html>
